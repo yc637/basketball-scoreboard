@@ -47,24 +47,7 @@
 
 ### 快速开始
 
-#### 方法一：直接打开
-
 直接用浏览器打开 `index.html` 文件即可使用。
-
-#### 方法二：本地服务器
-
-```bash
-# 使用 Python 3
-python -m http.server 8080
-
-# 使用 Node.js (需要 http-server)
-npx http-server -p 8080
-
-# 使用 PHP
-php -S localhost:8080
-```
-
-然后访问 <http://localhost:8080>
 
 ### 使用说明
 
@@ -179,24 +162,7 @@ Uses BroadcastChannel API and localStorage for real-time multi-tab synchronizati
 
 ### Quick Start
 
-#### Method 1: Open Directly
-
 Simply open `index.html` in your browser.
-
-#### Method 2: Local Server
-
-```bash
-# Using Python 3
-python -m http.server 8080
-
-# Using Node.js (requires http-server)
-npx http-server -p 8080
-
-# Using PHP
-php -S localhost:8080
-```
-
-Then visit <http://localhost:8080>
 
 ### Usage Guide
 
@@ -269,4 +235,3 @@ basketball-scoreboard-static/
 > Note: BroadcastChannel API requires modern browsers. For older browsers, consider using localStorage events as a fallback.
 
 #
-
