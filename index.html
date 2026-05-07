@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>篮球比赛计分板</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="langToggle" title="切换语言 / Switch Language">中</button>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" title="切换主题 / Switch Theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <div class="selector-page">
+    <h1 data-i18n="title">篮球比赛计分板</h1>
+    <p class="subtitle" data-i18n="subtitle">专业计分系统</p>
+
+    <!-- Rule Selector -->
+    <div class="ruleset-selector" id="rulesetSelector">
+      <button class="ruleset-pill active" data-ruleset="fiba" id="rulesetFiba">
+        <span class="ruleset-name">FIBA</span>
+        <span class="ruleset-desc" data-i18n="fiba_desc">国际篮联规则</span>
+      </button>
+      <button class="ruleset-pill" data-ruleset="nba" id="rulesetNba">
+        <span class="ruleset-name">NBA</span>
+        <span class="ruleset-desc" data-i18n="nba_desc">美国职篮规则</span>
+      </button>
+    </div>
+
+    <div class="selector-grid">
+      <!-- Operator Panel -->
+      <div class="selector-card-wrapper">
+        <a href="operator.html" class="selector-card">
+          <div class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h2 data-i18n="operator_title">操作面板</h2>
+            <p data-i18n="operator_desc">裁判/计分员使用，包含完整的比分控制、犯规记录、暂停管理等功能</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Display Panel -->
+      <div class="selector-card-wrapper">
+        <a href="display.html" class="selector-card">
+          <div class="card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="3" rx="2"/>
+                <line x1="8" x2="16" y1="21" y2="21"/>
+                <line x1="12" x2="12" y1="17" y2="21"/>
+              </svg>
+            </div>
+            <h2 data-i18n="display_title">展示面板</h2>
+            <p data-i18n="display_desc">观众/球员观看，大字显示比分、犯规次数、进攻倒计时等核心指标</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <p class="selector-hint" data-i18n="hint">提示：可在两个浏览器窗口分别打开操作面板和展示面板，数据自动同步</p>
+  </div>
+
+  <!-- Help Button -->
+  <button class="help-btn" id="helpBtn" title="操作说明">?</button>
+
+  <!-- Help Modal -->
+  <div class="help-modal-overlay" id="helpModal">
+    <div class="help-modal">
+      <button class="help-modal-close" id="helpModalClose">×</button>
+      <h1 data-i18n="help_title">篮球计分板操作说明</h1>
+
+      <h2 data-i18n="quick_start">快速开始</h2>
+      <ul>
+        <li data-i18n="help_rule_select">选择比赛规则：FIBA（国际篮联）或 NBA（美国职篮）</li>
+        <li data-i18n="help_operator"><strong data-i18n="operator_title">操作面板</strong>：裁判/计分员使用</li>
+        <li data-i18n="help_display"><strong data-i18n="display_title">展示面板</strong>：观众/球员观看</li>
+        <li data-i18n="help_sync">两个面板在不同浏览器窗口打开时，数据自动同步</li>
+      </ul>
+
+      <h2 data-i18n="game_control">比赛控制</h2>
+      <ul>
+        <li data-i18n="help_start_pause"><strong>开始比赛/暂停</strong>：控制比赛计时器的启动和暂停</li>
+        <li data-i18n="help_period"><strong>上一节/下一节</strong>：切换比赛节数（Q1-Q4，OT）</li>
+        <li data-i18n="help_reset_clock"><strong>重置比赛时钟</strong>：将当前节的时钟重置为初始时间</li>
+        <li data-i18n="help_shot_clock"><strong>24秒/14秒</strong>：重置进攻时钟</li>
+        <li data-i18n="help_reset_game"><strong>重置</strong>：完全重置比赛到初始状态</li>
+      </ul>
+
+      <h2 data-i18n="score_control">比分控制</h2>
+      <ul>
+        <li data-i18n="help_add_score"><strong>+1/+2/+3</strong>：为主队或客队增加相应分数</li>
+        <li data-i18n="help_sub_score"><strong>-1</strong>：减少1分（用于纠错）</li>
+      </ul>
+
+      <h2 data-i18n="foul_management">犯规管理</h2>
+      <ul>
+        <li data-i18n="help_add_foul"><strong>犯规+</strong>：增加犯规次数</li>
+        <li data-i18n="help_sub_foul"><strong>犯规-</strong>：减少犯规次数</li>
+        <li data-i18n="help_bonus">当单节犯规达到罚球标准时，会自动显示"罚球"提示</li>
+      </ul>
+
+      <h2 data-i18n="timeout_management">暂停管理</h2>
+      <ul>
+        <li data-i18n="help_timeout"><strong>暂停</strong>：请求暂停</li>
+        <li data-i18n="help_undo_timeout"><strong>撤销</strong>：取消最近一次暂停</li>
+      </ul>
+
+      <h2 data-i18n="keyboard_shortcuts">键盘快捷键</h2>
+      <ul>
+        <li><kbd>Space</kbd>：<span data-i18n="help_space">开始/暂停比赛</span></li>
+        <li><kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd>：<span data-i18n="help_home_score">主队得1/2/3分</span></li>
+        <li><kbd>Shift</kbd> + <kbd>1/2/3</kbd>：<span data-i18n="help_away_score">客队得1/2/3分</span></li>
+      </ul>
+
+      <h2 data-i18n="theme_switch">主题切换</h2>
+      <ul>
+        <li data-i18n="help_theme">点击右下角的<strong>月亮/太阳图标</strong>切换深色/浅色主题</li>
+        <li data-i18n="help_help">点击右下角的<strong>问号图标</strong>查看本操作说明</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      zh: {
+        title: '篮球比赛计分板',
+        subtitle: '专业计分系统',
+        fiba_desc: '国际篮联规则',
+        nba_desc: '美国职篮规则',
+        operator_title: '操作面板',
+        operator_desc: '裁判/计分员使用，包含完整的比分控制、犯规记录、暂停管理等功能',
+        display_title: '展示面板',
+        display_desc: '观众/球员观看，大字显示比分、犯规次数、进攻倒计时等核心指标',
+        hint: '提示：可在两个浏览器窗口分别打开操作面板和展示面板，数据自动同步',
+        help_title: '篮球计分板操作说明',
+        quick_start: '快速开始',
+        help_rule_select: '选择比赛规则：FIBA（国际篮联）或 NBA（美国职篮）',
+        help_operator: '<strong>操作面板</strong>：裁判/计分员使用',
+        help_display: '<strong>展示面板</strong>：观众/球员观看',
+        help_sync: '两个面板在不同浏览器窗口打开时，数据自动同步',
+        game_control: '比赛控制',
+        help_start_pause: '<strong>开始比赛/暂停</strong>：控制比赛计时器的启动和暂停',
+        help_period: '<strong>上一节/下一节</strong>：切换比赛节数（Q1-Q4，OT）',
+        help_reset_clock: '<strong>重置比赛时钟</strong>：将当前节的时钟重置为初始时间',
+        help_shot_clock: '<strong>24秒/14秒</strong>：重置进攻时钟',
+        help_reset_game: '<strong>重置</strong>：完全重置比赛到初始状态',
+        score_control: '比分控制',
+        help_add_score: '<strong>+1/+2/+3</strong>：为主队或客队增加相应分数',
+        help_sub_score: '<strong>-1</strong>：减少1分（用于纠错）',
+        foul_management: '犯规管理',
+        help_add_foul: '<strong>犯规+</strong>：增加犯规次数',
+        help_sub_foul: '<strong>犯规-</strong>：减少犯规次数',
+        help_bonus: '当单节犯规达到罚球标准时，会自动显示"罚球"提示',
+        timeout_management: '暂停管理',
+        help_timeout: '<strong>暂停</strong>：请求暂停',
+        help_undo_timeout: '<strong>撤销</strong>：取消最近一次暂停',
+        keyboard_shortcuts: '键盘快捷键',
+        help_space: '开始/暂停比赛',
+        help_home_score: '主队得1/2/3分',
+        help_away_score: '客队得1/2/3分',
+        theme_switch: '主题切换',
+        help_theme: '点击右下角的<strong>月亮/太阳图标</strong>切换深色/浅色主题',
+        help_help: '点击右下角的<strong>问号图标</strong>查看本操作说明'
+      },
+      en: {
+        title: 'Basketball Scoreboard',
+        subtitle: 'Professional Scoring System',
+        fiba_desc: 'International Basketball Federation',
+        nba_desc: 'National Basketball Association',
+        operator_title: 'Operator Panel',
+        operator_desc: 'For referees/scorekeepers - full score control, foul tracking, timeout management',
+        display_title: 'Display Panel',
+        display_desc: 'For audience/players - large score, fouls, shot clock display',
+        hint: 'Tip: Open operator and display panels in two browser windows, data syncs automatically',
+        help_title: 'Basketball Scoreboard Guide',
+        quick_start: 'Quick Start',
+        help_rule_select: 'Select game rules: FIBA (International) or NBA (American)',
+        help_operator: '<strong>Operator Panel</strong>: For referees/scorekeepers',
+        help_display: '<strong>Display Panel</strong>: For audience/players',
+        help_sync: 'Both panels sync automatically when opened in different browser windows',
+        game_control: 'Game Control',
+        help_start_pause: '<strong>Start/Pause</strong>: Control game timer',
+        help_period: '<strong>Prev/Next Period</strong>: Switch quarters (Q1-Q4, OT)',
+        help_reset_clock: '<strong>Reset Clock</strong>: Reset current period to initial time',
+        help_shot_clock: '<strong>24s/14s</strong>: Reset shot clock',
+        help_reset_game: '<strong>Reset</strong>: Full game reset to initial state',
+        score_control: 'Score Control',
+        help_add_score: '<strong>+1/+2/+3</strong>: Add points for home or away team',
+        help_sub_score: '<strong>-1</strong>: Subtract points (for corrections)',
+        foul_management: 'Foul Management',
+        help_add_foul: '<strong>Foul+</strong>: Add foul count',
+        help_sub_foul: '<strong>Foul-</strong>: Subtract foul count',
+        help_bonus: '"Bonus" indicator appears when team reaches foul penalty threshold',
+        timeout_management: 'Timeout Management',
+        help_timeout: '<strong>Timeout</strong>: Request timeout',
+        help_undo_timeout: '<strong>Undo</strong>: Cancel last timeout',
+        keyboard_shortcuts: 'Keyboard Shortcuts',
+        help_space: 'Start/Pause game',
+        help_home_score: 'Home team scores 1/2/3 points',
+        help_away_score: 'Away team scores 1/2/3 points',
+        theme_switch: 'Theme Switch',
+        help_theme: 'Click <strong>sun/moon icon</strong> (bottom-right) to switch dark/light theme',
+        help_help: 'Click <strong>question mark</strong> (bottom-right) to view this guide'
+      }
+    };
+
+    const LANG_KEY = 'basketball_scoreboard_lang';
+
+    function getLang() {
+      return localStorage.getItem(LANG_KEY) || 'zh';
+    }
+
+    function setLang(lang) {
+      localStorage.setItem(LANG_KEY, lang);
+      applyTranslations(lang);
+      updateLangToggle(lang);
+      try {
+        const channel = new BroadcastChannel('scoreboard_lang');
+        channel.postMessage(lang);
+        channel.close();
+      } catch (e) {}
+    }
+
+    function applyTranslations(lang) {
+      const t = translations[lang] || translations.zh;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          if (el.innerHTML !== t[key]) {
+            el.innerHTML = t[key];
+          }
+        }
+      });
+    }
+
+    function updateLangToggle(lang) {
+      const btn = document.getElementById('langToggle');
+      if (btn) btn.textContent = lang === 'zh' ? 'EN' : '中';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = getLang();
+      applyTranslations(lang);
+      updateLangToggle(lang);
+
+      const langToggle = document.getElementById('langToggle');
+      if (langToggle) {
+        langToggle.addEventListener('click', () => {
+          const current = getLang();
+          setLang(current === 'zh' ? 'en' : 'zh');
+        });
+      }
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === LANG_KEY && e.newValue) {
+          applyTranslations(e.newValue);
+          updateLangToggle(e.newValue);
+        }
+      });
+
+      try {
+        const channel = new BroadcastChannel('scoreboard_lang');
+        channel.onmessage = (event) => {
+          applyTranslations(event.data);
+          updateLangToggle(event.data);
+        };
+      } catch (e) {}
+    });
+  </script>
+
+  <script>
+    // Help modal logic
+    (function() {
+      const helpBtn = document.getElementById('helpBtn');
+      const helpModal = document.getElementById('helpModal');
+      const helpModalClose = document.getElementById('helpModalClose');
+
+      if (helpBtn && helpModal && helpModalClose) {
+        helpBtn.addEventListener('click', () => {
+          helpModal.classList.add('active');
+        });
+
+        helpModalClose.addEventListener('click', () => {
+          helpModal.classList.remove('active');
+        });
+
+        helpModal.addEventListener('click', (e) => {
+          if (e.target === helpModal) {
+            helpModal.classList.remove('active');
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && helpModal.classList.contains('active')) {
+            helpModal.classList.remove('active');
+          }
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    // Rule selector logic
+    (function() {
+      const RULESET_KEY = 'basketball_scoreboard_ruleset';
+      const fibaBtn = document.getElementById('rulesetFiba');
+      const nbaBtn = document.getElementById('rulesetNba');
+      const operatorLink = document.querySelector('a[href="operator.html"]');
+      const displayLink = document.querySelector('a[href="display.html"]');
+
+      // Load saved rule set
+      const savedRuleSet = localStorage.getItem(RULESET_KEY) || 'fiba';
+
+      function updateUI(ruleSet) {
+        fibaBtn.className = ruleSet === 'fiba' ? 'ruleset-pill active' : 'ruleset-pill';
+        nbaBtn.className = ruleSet === 'nba' ? 'ruleset-pill active' : 'ruleset-pill';
+
+        // Update links with rule set query param
+        if (operatorLink) {
+          operatorLink.href = `operator.html?ruleset=${ruleSet}`;
+        }
+        if (displayLink) {
+          displayLink.href = `display.html?ruleset=${ruleSet}`;
+        }
+      }
+
+      // Initialize UI
+      updateUI(savedRuleSet);
+
+      // Handle button clicks
+      fibaBtn.addEventListener('click', () => {
+        localStorage.setItem(RULESET_KEY, 'fiba');
+        updateUI('fiba');
+      });
+
+      nbaBtn.addEventListener('click', () => {
+        localStorage.setItem(RULESET_KEY, 'nba');
+        updateUI('nba');
+      });
+    })();
+  </script>
+</body>
+</html>
