@@ -9,6 +9,10 @@
 ## 中文
 
 专业的篮球比赛计分系统，支持 FIBA 国际篮联和 NBA 美国职篮两种规则。采用纯前端实现，无需后端服务器，可直接在浏览器中运行。
+<img width="2560" height="1356" alt="图像2026-5-8 00 11" src="https://github.com/user-attachments/assets/0104a535-9181-41ac-8682-d2ba2755a604" />
+<img width="2560" height="1354" alt="图像2026-5-8 00 18" src="https://github.com/user-attachments/assets/2981e18d-9582-48eb-892c-b2d04f7f5fb4" />
+<img width="2560" height="1356" alt="图像2026-5-8 00 19" src="https://github.com/user-attachments/assets/49968f18-3e4b-4aca-883c-42c3a9bdfec3" />
+<img width="2560" height="1356" alt="图像2026-5-8 00 20" src="https://github.com/user-attachments/assets/f981bb37-cea0-431f-847b-356901794c65" />
 
 ### 功能特性
 
