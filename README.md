@@ -12,8 +12,6 @@
 
 <img width="2560" height="1356" alt="图像2026-5-8 00 11" src="https://github.com/user-attachments/assets/0104a535-9181-41ac-8682-d2ba2755a604" />
 
-<img width="2560" height="1354" alt="图像2026-5-8 00 18" src="https://github.com/user-attachments/assets/2981e18d-9582-48eb-892c-b2d04f7f5fb4" />
-
 操作面板
 <img width="2560" height="1356" alt="图像2026-5-8 00 19" src="https://github.com/user-attachments/assets/49968f18-3e4b-4aca-883c-42c3a9bdfec3" />
 
@@ -134,6 +132,12 @@ basketball-scoreboard-static/
 ## English
 
 Professional basketball scoreboard system supporting both FIBA and NBA rulesets. Pure frontend implementation, no backend server required - runs directly in your browser. Developing using vibe coding.
+
+<img width="2560" height="1354" alt="图像2026-5-8 00 18" src="https://github.com/user-attachments/assets/2981e18d-9582-48eb-892c-b2d04f7f5fb4" />
+
+<img width="2560" height="1356" alt="图像2026-5-8 00 31" src="https://github.com/user-attachments/assets/df060d86-2a3a-4b51-8eb9-fa1463592490" />
+
+<img width="2558" height="1356" alt="图像2026-5-8 00 31 (1)" src="https://github.com/user-attachments/assets/18d99134-2f17-443e-a73a-d1b82166853a" />
 
 ### Features
 
