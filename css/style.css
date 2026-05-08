@@ -955,8 +955,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.5vh 2vw;
-  gap: 1.5vh;
+  padding: clamp(0.3vh, 0.8%, 1vh) clamp(1.5vw, 2%, 3vw);
+  gap: clamp(1vh, 2%, 2vh);
   overflow: hidden;
 }
 
@@ -986,12 +986,13 @@ body {
 /* 3-column layout: Home | Shot Clock | Away */
 .display-layout {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: clamp(1rem, 2vw, 2rem);
+  gap: clamp(1.5rem, 3vw, 3rem);
   width: 100%;
   flex: 1;
   min-height: 0;
+  padding: 0;
 }
 
 /* Team Cards */
@@ -999,16 +1000,17 @@ body {
   flex: 1;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 2vh 1.5vw;
+  border-radius: clamp(10px, 2vw, 28px);
+  padding: clamp(2vh, 4%, 5vh) clamp(1.5vw, 3%, 2.5vw);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 480px;
   position: relative;
-  min-width: 240px;
-  max-width: 480px;
+  min-width: clamp(280px, 32vw, 500px);
+  max-width: clamp(450px, 50vw, 700px);
+  min-height: clamp(400px, 58vh, 680px);
+  max-height: clamp(500px, 70vh, 800px);
 }
 
 .display-team-badge {
@@ -1025,9 +1027,9 @@ body {
 }
 
 .display-team-card .name {
-  font-size: clamp(2.5rem, 6vh, 4rem);
+  font-size: clamp(3.5rem, 8vh, 6rem);
   font-weight: 700;
-  margin-bottom: clamp(0.2rem, 0.5vh, 0.5rem);
+  margin-bottom: clamp(0.5rem, 1vh, 1rem);
   text-align: center;
   color: var(--text-primary);
   max-width: 100%;
@@ -1043,13 +1045,16 @@ body {
 }
 
 .display-team-card .score {
-  font-size: clamp(10rem, 36vh, 28rem);
-  line-height: 0.9;
-  margin-bottom: clamp(0.2rem, 0.5vh, 0.5rem);
+  font-size: clamp(8rem, 16vw, 22rem);
+  line-height: 0.82;
+  margin-bottom: clamp(0.5rem, 1vh, 1rem);
   text-shadow: var(--glow-score);
-  min-width: 1.9em;
+  min-width: 1.5em;
+  max-width: 1.8em;
+  width: fit-content;
   text-align: center;
   font-variant-numeric: tabular-nums;
+  overflow: hidden;
 }
 
 /* Home team score - Red */
